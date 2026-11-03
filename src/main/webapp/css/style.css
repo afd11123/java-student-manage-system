@@ -1,0 +1,454 @@
+@charset "UTF-8";
+/* ============================================================
+   班级学生成绩管理系统 - 全站样式
+   纯手写 CSS，不引入任何前端框架，符合"原生 JavaEE"的要求
+   ============================================================ */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    font-size: 14px;
+    color: #24303f;
+    background: #eef2f7;
+    line-height: 1.6;
+}
+
+a {
+    color: #2b6cb0;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+code {
+    background: #eef2f7;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-family: Consolas, "Courier New", monospace;
+    color: #b83280;
+}
+
+/* ---------------- 登录页 ---------------- */
+.login-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 55%, #4a69bd 100%);
+    padding: 20px;
+}
+
+.login-box {
+    width: 100%;
+    max-width: 400px;
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 34px 32px 26px;
+    box-shadow: 0 18px 50px rgba(0, 0, 0, .25);
+}
+
+.login-box h1 {
+    margin: 0 0 6px;
+    font-size: 21px;
+    text-align: center;
+    color: #1e3c72;
+}
+
+.login-box .subtitle {
+    margin: 0 0 22px;
+    text-align: center;
+    color: #8494a8;
+    font-size: 12px;
+}
+
+.login-box label {
+    display: block;
+    margin: 14px 0 6px;
+    font-weight: 600;
+    color: #4a5568;
+}
+
+.login-box input[type=text],
+.login-box input[type=password] {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #cbd5e0;
+    border-radius: 6px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color .15s;
+}
+
+.login-box input:focus {
+    border-color: #4a69bd;
+    box-shadow: 0 0 0 3px rgba(74, 105, 189, .15);
+}
+
+.demo-tip {
+    margin-top: 20px;
+    padding: 12px 14px;
+    background: #f7fafc;
+    border: 1px dashed #cbd5e0;
+    border-radius: 6px;
+    font-size: 12px;
+    color: #5a6b7f;
+}
+
+.demo-tip p {
+    margin: 2px 0;
+}
+
+/* ---------------- 顶部栏 ---------------- */
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    height: 58px;
+    background: linear-gradient(90deg, #1e3c72, #2a5298);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .15);
+}
+
+.topbar .brand {
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: .5px;
+}
+
+.topbar .user-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+}
+
+.topbar .badge {
+    padding: 2px 9px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, .2);
+    font-size: 12px;
+}
+
+.topbar .muted {
+    color: rgba(255, 255, 255, .7);
+}
+
+/* ---------------- 布局 ---------------- */
+.container {
+    max-width: 1180px;
+    margin: 22px auto 60px;
+    padding: 0 20px;
+}
+
+.section {
+    background: #fff;
+    border-radius: 8px;
+    padding: 18px 20px 22px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 4px rgba(30, 60, 114, .08);
+}
+
+.section h2 {
+    margin: 0 0 14px;
+    font-size: 15px;
+    color: #1e3c72;
+    padding-left: 10px;
+    border-left: 4px solid #4a69bd;
+}
+
+/* ---------------- 数据卡片 ---------------- */
+.cards {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.card {
+    flex: 1 1 160px;
+    background: #fff;
+    border-radius: 8px;
+    padding: 16px 18px;
+    box-shadow: 0 1px 4px rgba(30, 60, 114, .08);
+    border-top: 3px solid #4a69bd;
+}
+
+.card-label {
+    font-size: 12px;
+    color: #8494a8;
+}
+
+.card-value {
+    margin-top: 4px;
+    font-size: 26px;
+    font-weight: 700;
+    color: #1e3c72;
+}
+
+/* ---------------- 表格 ---------------- */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.table th,
+.table td {
+    padding: 9px 10px;
+    border-bottom: 1px solid #e6edf5;
+    text-align: left;
+}
+
+.table th {
+    background: #f5f8fc;
+    color: #4a5568;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.table tbody tr:hover {
+    background: #f9fbfe;
+}
+
+.table td.empty {
+    text-align: center;
+    color: #a0aec0;
+    padding: 26px 0;
+}
+
+.score-pass {
+    color: #2f855a;
+    font-weight: 600;
+}
+
+.score-fail {
+    color: #c53030;
+    font-weight: 600;
+}
+
+.tag {
+    display: inline-block;
+    padding: 1px 8px;
+    border-radius: 10px;
+    font-size: 12px;
+}
+
+.tag.ok {
+    background: #e6fffa;
+    color: #2c7a7b;
+}
+
+.tag.warn {
+    background: #fff5f5;
+    color: #c53030;
+}
+
+/* ---------------- 表单 ---------------- */
+.score-form .form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    align-items: flex-end;
+}
+
+.score-form .field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.score-form .field label {
+    font-size: 12px;
+    color: #5a6b7f;
+    font-weight: 600;
+}
+
+.score-form input,
+.score-form select {
+    padding: 8px 10px;
+    border: 1px solid #cbd5e0;
+    border-radius: 5px;
+    font-size: 13px;
+    min-width: 150px;
+    outline: none;
+}
+
+.score-form input:focus,
+.score-form select:focus {
+    border-color: #4a69bd;
+}
+
+.score-form .field-actions {
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+}
+
+/* ---------------- 按钮 ---------------- */
+.btn {
+    display: inline-block;
+    padding: 7px 16px;
+    border: 1px solid #cbd5e0;
+    border-radius: 5px;
+    background: #fff;
+    color: #4a5568;
+    font-size: 13px;
+    cursor: pointer;
+    text-decoration: none !important;
+    line-height: 1.5;
+    transition: all .15s;
+}
+
+.btn:hover {
+    border-color: #4a69bd;
+    color: #2a5298;
+}
+
+.btn-primary {
+    background: #2a5298;
+    border-color: #2a5298;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background: #1e3c72;
+    border-color: #1e3c72;
+    color: #fff;
+}
+
+.btn-danger {
+    border-color: #fc8181;
+    color: #c53030;
+}
+
+.btn-danger:hover {
+    background: #c53030;
+    border-color: #c53030;
+    color: #fff;
+}
+
+.btn-ghost {
+    border-color: rgba(255, 255, 255, .5);
+    background: transparent;
+    color: #fff;
+}
+
+.btn-ghost:hover {
+    background: rgba(255, 255, 255, .15);
+    color: #fff;
+}
+
+.btn-sm {
+    padding: 3px 10px;
+    font-size: 12px;
+}
+
+.btn-block {
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px;
+    font-size: 15px;
+}
+
+.inline-form {
+    display: inline;
+    margin: 0;
+}
+
+.ops {
+    white-space: nowrap;
+}
+
+.ops .btn + .inline-form {
+    margin-left: 6px;
+}
+
+/* ---------------- 提示条 ---------------- */
+.alert {
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-bottom: 16px;
+    font-size: 13px;
+    border-left: 4px solid;
+}
+
+.alert-success {
+    background: #f0fff4;
+    border-color: #38a169;
+    color: #276749;
+}
+
+.alert-warning {
+    background: #fffbea;
+    border-color: #d69e2e;
+    color: #975a16;
+}
+
+.alert-danger {
+    background: #fff5f5;
+    border-color: #e53e3e;
+    color: #9b2c2c;
+}
+
+/* ---------------- 错误页 ---------------- */
+.error-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.error-box {
+    max-width: 560px;
+    width: 100%;
+    background: #fff;
+    border-radius: 10px;
+    padding: 34px 30px;
+    text-align: center;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, .1);
+}
+
+.error-box .code {
+    font-size: 54px;
+    font-weight: 800;
+    color: #e2e8f0;
+    line-height: 1;
+    margin-bottom: 8px;
+}
+
+.error-box h1 {
+    margin: 0 0 12px;
+    font-size: 19px;
+    color: #1e3c72;
+}
+
+.error-box .detail {
+    padding: 12px 14px;
+    background: #f7fafc;
+    border-radius: 6px;
+    color: #4a5568;
+    font-size: 13px;
+    word-break: break-all;
+    text-align: left;
+}
+
+.error-box .hint {
+    margin-top: 12px;
+    color: #8494a8;
+    font-size: 12px;
+}
+
+.error-box .actions {
+    margin-top: 22px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}

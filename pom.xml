@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- ============================================================
+         项目坐标：com.score / score-management / 1.0.0
+         packaging 必须是 war，因为最终要部署到 Tomcat 的 webapps 下
+         ============================================================ -->
+    <groupId>com.score</groupId>
+    <artifactId>score-management</artifactId>
+    <version>1.0.0</version>
+    <packaging>war</packaging>
+
+    <name>score-management</name>
+    <description>班级学生成绩管理系统 - 原生 JavaEE MVC（Servlet + JSP + JDBC），不使用任何框架</description>
+
+    <properties>
+        <!-- 源码与资源文件统一 UTF-8，否则 Java 里的中文注释会编译乱码 -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <!-- 目标 JDK 8：与本机 Tomcat 8.5.0 匹配，Servlet 规范为 javax.servlet -->
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
+
+    <dependencies>
+        <!-- Servlet API：由 Tomcat 提供，scope 必须是 provided，否则会和 Tomcat 自带的类冲突 -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.1</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- JSTL 1.2：JSP 页面里做循环(c:forEach)、判断(c:if)、数字格式化(fmt:formatNumber) -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+
+        <!-- MySQL 8.x JDBC 驱动，驱动类为 com.mysql.cj.jdbc.Driver -->
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>8.0.33</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <!-- 打出来的包名：score-management.war，访问路径即为 /score-management -->
+        <finalName>score-management</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.4.0</version>
+                <configuration>
+                    <!-- 我们确实提供了 WEB-INF/web.xml，这里显式声明不因为有/无 web.xml 而报错 -->
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
